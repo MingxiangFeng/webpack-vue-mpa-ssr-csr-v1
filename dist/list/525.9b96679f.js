@@ -1,0 +1,1 @@
+(self.webpackChunkhome=self.webpackChunkhome||[]).push([[525],{525:(e,t,s)=>{"use strict";s.r(t),s.d(t,{"default":()=>a});const n={};const a=(0,s(900).Z)(n,(function(){var e=this,t=e.$createElement;e._self._c;return e._m(0)}),[function(){var e=this,t=e.$createElement,s=e._self._c||t;return s("div",[s("h1",{staticClass:"aa"},[e._v("a")])])}],!1,null,"a4154fb2",null).exports}}]);

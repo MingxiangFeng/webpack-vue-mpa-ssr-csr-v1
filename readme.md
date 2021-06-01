@@ -7,6 +7,15 @@
   - 文件夹快捷引入
     - src文件夹 @
     - static文件夹 @static
+# 运行
+```bash
+# 开发环境运行
+npm run dev
+# 生产构建
+npm run build
+```
+# 部署
+使用pm2进行部署，命令```npm run start```。关于pm2，请查看https://pm2.keymetrics.io/
 
 # 约定
 - 开发文件目录为src目录，每个目录都是一个vue单页应用。
@@ -22,7 +31,51 @@
 
 ## [vue-server-renderer-webpack-plugin] webpack config `output.libraryTarget` should be "commonjs2".
 - 解决方法
-  - https://github.com/vuejs/vue/issues/11718
+  - 修改 /node_modules/vue-server-renderer/server-plugin.js
+    ```javascript
+    var validate = function (compiler) {
+      if (compiler.options.target !== 'node') {
+        warn('webpack config `target` should be "node".');
+      }
+    -  if (compiler.options.output && compiler.options.output.libraryTarget !== 'commonjs2') {
+    +  if (compiler.options.output && compiler.options.output.library.type !== 'commonjs2') {
+        warn('webpack config `output.libraryTarget` should be "commonjs2".');
+      }
+
+      if (!compiler.options.externals) {
+        tip(
+          'It is recommended to externalize dependencies in the server build for ' +
+          'better build performance.'
+        );
+      }
+    };
+    ```
+    ```javascript
+    - var entryAssets = entryInfo.assets.filter(isJS);
+    + var entryAssets = entryInfo.assets.filter(file => isJS(file.name));
+
+    if (entryAssets.length > 1) {
+      throw new Error(
+        "Server-side bundle should have one single entry file. " +
+        "Avoid using CommonsChunkPlugin in the server config."
+      )
+    }
+
+    var entry = entryAssets[0];
+    - if (!entry || typeof entry !== 'string') {
+    + if (!entry || typeof entry.name !== 'string') {
+      throw new Error(
+        ("Entry \"" + entryName + "\" not found. Did you specify the correct entry option?")
+      )
+    }
+
+    var bundle = {
+    + entry: entry.name,
+      files: {},
+      maps: {}
+    }
+    ```
+  - 参考文档：https://github.com/vuejs/vue/issues/11718
 
 ## chunkFilename 使用[runtimeName]/[name].[chunkhash:8].js 导致运行时无法加载chunk文件
 - 解决办法
