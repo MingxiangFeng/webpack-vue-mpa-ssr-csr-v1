@@ -8,7 +8,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { merge } = require('webpack-merge');
-// const VueSSRClientPlugin = require('vue-server-renderer/client-plugin')
 
 const node_env = process.env.NODE_ENV === 'development' ? 'development' : 'production'
 const isProd = process.env.NODE_ENV === 'production'
@@ -77,10 +76,6 @@ const setMPA = () => {
           },
         })
       );
-
-      // if (pageName == 'home') {
-      //   htmlWebpackPlugins.push(new VueSSRClientPlugin({filename: 'home/vue-ssr-client-manifest.json'}))
-      // }
     });
 
   return {
@@ -151,6 +146,5 @@ if (isProd) {
     new webpack.HotModuleReplacementPlugin()
   )
 }
-console.log('isProd===', isProd);
 
 module.exports = config;

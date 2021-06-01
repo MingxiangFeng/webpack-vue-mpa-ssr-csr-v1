@@ -37,8 +37,6 @@ module.exports = function setupDevServer (app, cb) {
     publicPath: clientConfig.output.publicPath,
   })
 
-  console.log('clientConfig===', clientConfig);
-
   app.use(devMiddleware)
 
   clientCompiler.hooks.done.tap('client', () => {
