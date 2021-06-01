@@ -77,7 +77,7 @@ npm run build
     ```
   - 参考文档：https://github.com/vuejs/vue/issues/11718
 
-## chunkFilename 使用[runtimeName]/[name].[chunkhash:8].js 导致运行时无法加载chunk文件
+## chunkFilename 使用[runtime]/[name].[chunkhash:8].js 导致运行时无法加载chunk文件
 - 解决办法
   - 使用函数命名的形式
     - ```
