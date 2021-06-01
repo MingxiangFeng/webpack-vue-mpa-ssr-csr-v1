@@ -24,7 +24,7 @@ npm run build
   - 当前src中home目录为ssr页面目录
 
 # 其他推荐
-- 使用webpack4，vue2.x搭建的csr与ssr的混合大型网站前端架构。https://github.com/MingxiangFeng/webpack4-vue-ssr-csr-v2
+- 使用webpack4，vue2.x搭建的csr与ssr的混合大型网站前端架构，较前沿，且很稳定！https://github.com/MingxiangFeng/webpack4-vue-ssr-csr-v2
 - 使用webpack4.x和vue2.x搭建的服务端渲染单页应用。https://github.com/MingxiangFeng/webpack-vue-ssr-spa
 - 使用webpack5.x，vue2.x搭建的大型网站前端csr架构。https://github.com/MingxiangFeng/webpack-vue-csr-mpa
 
